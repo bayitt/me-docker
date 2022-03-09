@@ -1,0 +1,24 @@
+version: "3"
+services:
+  webserver:
+    container_name: webserver
+    build:
+      context: ./nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - leke-net
+    depends_on:
+      - backmeup-api
+  backmeup-api:
+    container_name: backmeup-api
+    build:
+      context: ./backmeup-be
+    networks:
+      - leke-net
+    volumes:
+      - ./backmeup-be:/usr/src/app
+networks:
+  leke-net:
+    driver: bridge
