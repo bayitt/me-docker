@@ -9,12 +9,15 @@ services:
       - "443:443"
     networks:
       - leke-net
+    volumes:
+      - ./backmeup-be:/var/www/vhosts/backmeup-be
     depends_on:
       - backmeup-api
   backmeup-api:
     container_name: backmeup-api
     build:
       context: ./backmeup-be
+      dockerfile: Dockerfile.dev
     networks:
       - leke-net
     volumes:
