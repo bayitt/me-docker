@@ -1,3 +1,9 @@
 
 # Applications
 backmeup-be
+
+# SSL/Certbot
+certbot
+certbot-etc
+certbot-var
+dhparam
