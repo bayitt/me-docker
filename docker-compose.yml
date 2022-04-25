@@ -37,7 +37,10 @@ services:
       - leke-net
     volumes:
       - ./backmeup-be:/usr/src/app
+<<<<<<< HEAD
       - /usr/src/app/node_modules
+=======
+>>>>>>> 5615f8b1fb01f3704c20227c4d9741367a314ad4
   # certbot:
   #   image: certbot/certbot
   #   container_name: certbot
@@ -49,7 +52,11 @@ services:
   #     - webserver
   #   networks:
   #     - leke-net
+<<<<<<< HEAD
   #   command: certonly --webroot --webroot-path=/var/www/certbot --email olamileke.dev@gmail.com --agree-tos --no-eff-email --force-renewal -d backmeup.olamileke.me
+=======
+  #   command: certonly --webroot --webroot-path=/var/www/certbot --email olamileke.dev@gmail.com --agree-tos --no-eff-email --force-renewal -d olamileke.me
+>>>>>>> 5615f8b1fb01f3704c20227c4d9741367a314ad4
 networks:
   leke-net:
     driver: bridge
