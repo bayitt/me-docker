@@ -10,9 +10,21 @@ services:
     networks:
       - leke-net
     volumes:
+      - ./backmeup:/var/www/vhosts/backmeup
       - ./backmeup-be:/var/www/vhosts/backmeup-be
     depends_on:
+      - backmeup
       - backmeup-api
+  backmeup:
+    container_name: backmeup
+    build:
+      context: ./backmeup-fe
+      dockerfile: Dockerfile.dev
+    networks:
+      - leke-net
+    volumes:
+      - ./backmeup-fe:/app
+      - /app/node_modules
   backmeup-api:
     container_name: backmeup-api
     build:

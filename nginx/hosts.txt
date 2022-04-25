@@ -1,3 +1,3 @@
 # DNS entries
-127.0.0.1   backmeup-api.olamileke.me
+127.0.0.1   backmeup-api.olamileke.com
 # End - End DNS entries
