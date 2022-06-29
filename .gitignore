@@ -4,6 +4,7 @@ backmeup-fe
 backmeup-be
 
 # SSL/Certbot
+credentials
 certbot
 certbot-etc
 certbot-var
