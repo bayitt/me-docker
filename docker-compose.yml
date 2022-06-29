@@ -52,7 +52,7 @@ services:
       - webserver
     networks:
       - leke-net
-    command: certonly --cert-name olamileke.me --dns-digitalocean --dns-digitalocean-credentials /credentials/certbot-credentials.ini -d olamileke.me -d *.olamileke.me
+    command: sleep 5
 networks:
   leke-net:
     driver: bridge
