@@ -21,25 +21,18 @@ services:
       - backmeup-api
   backmeup:
     container_name: backmeup
-    build:
-      context: ./backmeup-fe
-      dockerfile: Dockerfile
+    image: olamileke/backmeup-gello
     networks:
       - leke-net
     volumes:
-      - ./backmeup-fe:/app
-      - /app/node_modules
-    command: 'yarn start'
+      - ./env/gello.env.js:/app/build/env.js
   backmeup-api:
     container_name: backmeup-api
-    build:
-      context: ./backmeup-be
-      dockerfile: Dockerfile
+    image: olamileke/backmeup-zilch
     networks:
       - leke-net
     volumes:
-      - ./backmeup-be:/usr/src/app
-      - /usr/src/app/node_modules
+      - ./env/zilch.env:/usr/src/app/.env
   certbot:
     image: certbot/dns-digitalocean
     container_name: certbot
