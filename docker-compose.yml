@@ -19,6 +19,7 @@ services:
     depends_on:
       - backmeup
       - backmeup-api
+      - notify
   backmeup:
     container_name: backmeup
     image: olamileke/backmeup-gello
@@ -33,6 +34,13 @@ services:
       - leke-net
     volumes:
       - ./env/zilch.env:/usr/src/app/.env
+  notify:
+    container_name: notify
+    image: olamileke/notify
+    networks:
+      - leke-net
+    volumes:
+      - ./env/notify.env:/usr/src/app/.env
   certbot:
     image: certbot/dns-digitalocean
     container_name: certbot
