@@ -13,8 +13,19 @@ services:
       - ./backmeup:/var/www/vhosts/backmeup
       - ./backmeup-be:/var/www/vhosts/backmeup-be
     depends_on:
+      - notify
       - backmeup
       - backmeup-api
+  notify:
+    container_name: notify
+    build:
+      context: ./notify
+      dockerfile: Dockerfile.dev
+    networks:
+      - leke-net
+    volumes:
+      - ./notify:/usr/src/app
+      - /usr/src/app/node_modules
   backmeup:
     container_name: backmeup
     build:
