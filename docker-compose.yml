@@ -18,10 +18,15 @@ services:
       - ./credentials:/credentials
     depends_on:
       - backmeup
-      - backmeup-api
+      - backmeup-admin
       - notify
   backmeup:
     container_name: backmeup
+    image: olamileke/backmeup-orion
+    networks:
+      - leke-net
+  backmeup-admin:
+    container_name: backmeup-admin
     image: olamileke/backmeup-gello
     networks:
       - leke-net
