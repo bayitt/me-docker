@@ -39,6 +39,13 @@ services:
       - leke-net
     volumes:
       - ./env/zilch.env:/usr/src/app/.env
+  backmeup-backups:
+    container_name: backmeup-backups
+    image: olamileke/backmeup-duran
+    networks:
+      - leke-net
+    volumes:
+      - ./env/duran.env:/usr/src/app/.env
   notify:
     container_name: notify
     image: olamileke/notify
