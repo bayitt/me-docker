@@ -10,42 +10,12 @@ services:
     networks:
       - leke-net
     volumes:
-      - ./backmeup-be:/var/www/vhosts/backmeup-be
-      - ./certbot:/var/www/certbot
-      - ./certbot-etc:/etc/letsencrypt
-      - ./certbot-var:/var/lib/letsencrypt
-      - ./dhparam:/etc/ssl/certs
-      - ./credentials:/credentials
+      - ./certbot/root:/var/www/certbot
+      - ./certbot/etc:/etc/letsencrypt
+      - ./certbot/var:/var/lib/letsencrypt
+      - ./certbot/dhparam:/etc/ssl/certs
     depends_on:
-      - backmeup
-      - backmeup-admin
       - notify
-  backmeup:
-    container_name: backmeup
-    image: olamileke/backmeup-orion
-    networks:
-      - leke-net
-  backmeup-admin:
-    container_name: backmeup-admin
-    image: olamileke/backmeup-gello
-    networks:
-      - leke-net
-    volumes:
-      - ./env/gello.env.js:/app/build/env.js
-  backmeup-api:
-    container_name: backmeup-api
-    image: olamileke/backmeup-zilch
-    networks:
-      - leke-net
-    volumes:
-      - ./env/zilch.env:/usr/src/app/.env
-  backmeup-backups:
-    container_name: backmeup-backups
-    image: olamileke/backmeup-duran
-    networks:
-      - leke-net
-    volumes:
-      - ./env/duran.env:/usr/src/app/.env
   notify:
     container_name: notify
     image: olamileke/notify
@@ -53,19 +23,19 @@ services:
       - leke-net
     volumes:
       - ./env/notify.env:/usr/src/app/.env
-  certbot:
-    image: certbot/dns-digitalocean
-    container_name: certbot
-    volumes:
-      - ./certbot:/var/www/certbot
-      - ./certbot-etc:/etc/letsencrypt
-      - ./certbot-var:/var/lib/letsencrypt
-      - ./credentials:/credentials
-    depends_on:
-      - webserver
-    networks:
-      - leke-net
-    command: sleep 5
+  # certbot:
+  #   image: certbot/dns-digitalocean
+  #   container_name: certbot
+  #   volumes:
+  #     - ./certbot/root:/var/www/certbot
+  #     - ./certbot/etc:/etc/letsencrypt
+  #     - ./certbot/var:/var/lib/letsencrypt
+  #     - ./certbot/credentials:/credentials
+  #   depends_on:
+  #     - webserver
+  #   networks:
+  #     - leke-net
+  #   command: certonly --dns-digitalocean --dns-digitalocean-credentials /credentials/credentials.ini -d olamileke.dev -d *.olamileke.dev
 networks:
   leke-net:
     driver: bridge

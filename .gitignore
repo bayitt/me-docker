@@ -1,10 +1,6 @@
 
 # SSL/Certbot
-credentials
 certbot
-certbot-etc
-certbot-var
-dhparam
 
 # Environment Variables
 env
