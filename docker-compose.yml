@@ -16,6 +16,8 @@ services:
       - ./certbot/dhparam:/etc/ssl/certs
     depends_on:
       - notify
+      - noir
+      - crest
   notify:
     container_name: notify
     image: olamileke/notify
@@ -23,6 +25,29 @@ services:
       - leke-net
     volumes:
       - ./env/notify.env:/usr/src/app/.env
+  noir:
+    container_name: noir
+    image: olamileke/bayitt-noir
+    networks:
+      - leke-net
+    volumes:
+      - ./env/noir.env:/usr/src/app/.env
+    env_file:
+      - ./env/noir.env
+  crest:
+    container_name: crest
+    image: olamileke/bayitt-crest
+    networks:
+      - leke-net
+    volumes:
+      - ./env/crest.env:/usr/src/app/.env
+  pluto:
+    container_name: pluto
+    image: olamileke/bayitt-pluto
+    networks:
+      - leke-net
+    env_file:
+      - ./env/pluto.env
   # certbot:
   #   image: certbot/dns-digitalocean
   #   container_name: certbot
