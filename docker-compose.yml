@@ -18,6 +18,7 @@ services:
       - notify
       - noir
       - crest
+      - cyclone
   notify:
     container_name: notify
     image: olamileke/notify
@@ -48,6 +49,13 @@ services:
       - leke-net
     env_file:
       - ./env/pluto.env
+  cyclone:
+    container_name: cyclone
+    image: olamileke/cyclone
+    networks:
+      - leke-net
+    volumes:
+      - ./env/cyclone.env:/app/.env
   # certbot:
   #   image: certbot/dns-digitalocean
   #   container_name: certbot
