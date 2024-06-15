@@ -19,6 +19,7 @@ services:
       - noir
       - crest
       - cyclone
+      - agape
   notify:
     container_name: notify
     image: olamileke/notify
@@ -56,6 +57,13 @@ services:
       - leke-net
     volumes:
       - ./env/cyclone.env:/app/.env
+  agape:
+    container_name: agape
+    image: olamileke/agape
+    networks:
+      - leke-net
+    volumes:
+      - ./env/agape.env:/app/.env
   # certbot:
   #   image: certbot/dns-digitalocean
   #   container_name: certbot
