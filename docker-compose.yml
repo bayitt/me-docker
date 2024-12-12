@@ -57,6 +57,15 @@ services:
       - leke-net
     volumes:
       - ./env/cyclone.env:/app/.env
+  moniteur:
+    container_name: moniteur
+    image: olamileke/moniteur
+    networks:
+      - leke-net
+    volumes:
+      - ./env/moniteur.env:/app/.env
+      - ./certbot/etc/live/olamileke.dev/cert.pem:/app/cert.pem
+      - ./certbot/etc/live/olamileke.dev/privkey.pem:/app/key.pem
   agape:
     container_name: agape
     image: olamileke/agape
@@ -64,6 +73,7 @@ services:
       - leke-net
     volumes:
       - ./env/agape.env:/app/.env
+      - ./volumes/agape-record.json:/app/record.json
   # certbot:
   #   image: certbot/dns-digitalocean
   #   container_name: certbot
